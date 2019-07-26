@@ -33,7 +33,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/new", name="post_new", methods={"GET","POST"})
+     * @Route("/admin/post/new", name="post_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -56,7 +56,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}-{id}", name="post_show", methods={"GET"}, requirements={"slug":"[a-z0-9\-]*"})
+     * @Route("/post/{slug}-{id}", name="post_show", methods={"GET"}, requirements={"slug":"[a-z0-9\-]*"})
      */
     public function show($slug, $id, PostRepository $postRepository): Response
     {
@@ -68,7 +68,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}/edit", name="post_edit", methods={"GET","POST"})
+     * @Route("/admin/post/{id}/edit", name="post_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Post $post): Response
     {
@@ -89,7 +89,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="post_delete", methods={"DELETE"})
+     * @Route("/admin/post/{id}", name="post_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Post $post): Response
     {
