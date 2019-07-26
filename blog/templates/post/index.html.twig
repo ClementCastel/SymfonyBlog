@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Categories</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
                 <th>actions</th>
@@ -22,6 +23,13 @@
                 <td>{{ post.id }}</td>
                 <td>{{ post.title }}</td>
                 <td>{{ post.content }}</td>
+
+                <td>{% for category in post.categories %}
+
+                    {{ category.name }}
+
+                {% endfor %}</td>
+
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
