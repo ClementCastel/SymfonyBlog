@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\PostType;
@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class PostController
+ * @package App\Controller
+ * @Route("/admin/post")
+ */
 class PostController extends AbstractController
 {
     /**
@@ -33,7 +38,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/post/new", name="post_new", methods={"GET","POST"})
+     * @Route("/new", name="post_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -56,7 +61,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/post/{slug}-{id}", name="post_show", methods={"GET"}, requirements={"slug":"[a-z0-9\-]*"})
+     * @Route("/{slug}-{id}", name="post_show", methods={"GET"}, requirements={"slug":"[a-z0-9\-]*"})
      */
     public function show($slug, $id, PostRepository $postRepository): Response
     {
@@ -68,7 +73,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/post/{id}/edit", name="post_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="post_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Post $post): Response
     {
@@ -89,7 +94,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/admin/post/{id}", name="post_delete", methods={"DELETE"})
+     * @Route("/{id}", name="post_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Post $post): Response
     {
