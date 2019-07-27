@@ -14,9 +14,13 @@ A blog built with Symfony 4
 ##### Public
 
 ##### Admin
+###### Basic
++ login : */login*
++ index : */admin*
+
 ###### Posts :
 + C : */admin/post/new*
-+ R : */admin/post/* & */admin/post/{slug}-{id}*
++ R : */admin/post/* & */admin/post/{slug}-{id}* & */{slug}-{id}*
 + U : */admin/post/{id}/edit*
 + D : */admin/post/{id}*
 
@@ -32,3 +36,5 @@ D1 ( 21/07 ) : Front end templates
 D2 ( 23/07 ) : login / logout admin
 
 D3 ( 26/07 ) : Posts CRUD + Categories CRUD & link to posts
+
+D4 ( 27/07 ) : Admin index
