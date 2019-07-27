@@ -5,6 +5,13 @@
 {% block body %}
     <h1>Category index</h1>
 
+
+    {% for message in app.flashes('success') %}
+
+    <h2 style="color: green;">{{ message }}</h2>
+
+    {% endfor %}
+
     <table class="table">
         <thead>
             <tr>

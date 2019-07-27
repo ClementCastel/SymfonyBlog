@@ -50,6 +50,7 @@ class PostController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
+            $this->addFlash('success', 'Post ajouté avec succès');
 
             return $this->redirectToRoute('post_index');
         }
@@ -83,6 +84,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Post modifié avec succès');
 
             return $this->redirectToRoute('post_index');
         }
@@ -102,6 +104,7 @@ class PostController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($post);
             $entityManager->flush();
+            $this->addFlash('success', 'Post supprimé avec succès');
         }
 
         return $this->redirectToRoute('post_index');
