@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin index{% endblock %}
+
+{% block body %}
+
+    <h1>Admin index</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><a href="{{ path("post_index") }}">POSTS</a></td>
+            </tr>
+            <tr>
+                <td><a href="{{ path("category_index") }}">CATEGORIES</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
