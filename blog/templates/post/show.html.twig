@@ -16,6 +16,18 @@
                 <td>{{ post.title }}</td>
             </tr>
             <tr>
+                <th>Thumbnail</th>
+                {% if post.filename %}
+
+                    <td><img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" style="width: auto; height: 80px;" alt="" /></td>
+
+                {% else %}
+
+                    <td></td>
+
+                {% endif %}
+            </tr>
+            <tr>
                 <th>Content</th>
                 <td>{{ post.content }}</td>
             </tr>

@@ -18,6 +18,7 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>Categories</th>
+                <th>Thumbnail</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
                 <th>actions</th>
@@ -35,6 +36,16 @@
                     {{ category.name }}
 
                 {% endfor %}</td>
+
+                {% if post.filename %}
+
+                <td><img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" style="width: auto; height: 80px;" alt="" /></td>
+
+                {% else %}
+
+                <td><img src="https://via.placeholder.com/140x80" alt="" /></td>
+
+                {% endif %}
 
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
