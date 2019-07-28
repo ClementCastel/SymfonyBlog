@@ -1,50 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post{% endblock %}
+{% block title %}
+
+    {{ post.title }}
+
+{% endblock %}
 
 {% block body %}
-    <h1>Post</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ post.title }}</td>
-            </tr>
-            <tr>
-                <th>Thumbnail</th>
-                {% if post.filename %}
+    {{ include('_navbar.html.twig') }}
+<div style="margin-top: 3.5rem;"></div>
 
-                    <td><img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" style="width: auto; height: 80px;" alt="" /></td>
+  <div class="container">
 
-                {% else %}
+    <div class="row mb-4">
 
-                    <td></td>
+      <!-- Post Content Column -->
+      <div class="col-lg-8" style="
+    margin-left: auto;
+    margin-right: auto;
+">
 
-                {% endif %}
-            </tr>
-            <tr>
-                <th>Categories</th>
-                <td>{% for category in post.categories %} {{ category.name }}, {% endfor %}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ post.content }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <!-- Title -->
+        <h1 class="mt-4">{{ post.title }}</h1>
 
-    <a href="{{ path('post.index') }}">back to list</a>
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on {{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <div class="text-center">
+          {% if post.filename %}
+
+            <img class="img-fluid rounded mx-auto" style="width: 600px; height: auto;" src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('head')}}" alt="">
+
+          {% else %}
+
+            <img class="img-fluid rounded" src="https://via.placeholder.com/600x340" alt="">
+
+          {% endif %}
+        </div>
+
+
+
+        <hr>
+
+        <!-- Post Content -->
+        <p style="text-indent: 2em;" class="mt-4 mb-4">
+          {{ post.content }}
+        </p>
+
+        <hr>
+
+
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">© Company 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
 {% endblock %}
