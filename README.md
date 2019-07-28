@@ -37,4 +37,6 @@ D2 ( 23/07 ) : login / logout admin
 
 D3 ( 26/07 ) : Posts CRUD + Categories CRUD & link to posts
 
-D4 ( 27/07 ) : Admin index
+D4 ( 27/07 ) : Admin index + Confirmation message for C_UD
+
+D5 ( 28/07 ) : Post thumbnail + Front end-Back end integration
