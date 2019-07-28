@@ -1,58 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post index{% endblock %}
+{% block title "Home - Symfony Blog" %}
 
 {% block body %}
-    <h1>Post index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Categories</th>
-                <th>Thumbnail</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for post in posts %}
-            <tr>
-                <td>{{ post.id }}</td>
-                <td>{{ post.title }}</td>
-                <td>{{ post.content }}</td>
+{{ include('_navbar.html.twig') }}
+  <body style="padding-top: 3.5rem;">
+    <main role="main">
 
-                <td>{% for category in post.categories %}
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Symfony Blog</h1>
+          <p>Symfony Blog is a simple CMS that allows you to manage posts and category. It is using bootstrap, so templates are easy to refactor on your willing.</p>
+        </div>
+      </div>
 
-                    {{ category.name }}
+      <div class="container">
+        <!-- Example row of columns -->
 
-                {% endfor %}</td>
+        <div class="row">
+            {% for post in posts %}
+                  <div class="col-md-4">
+                    <div class="card mb-3">
+                      <h4 class="card-header">{{ post.title }}</h4>
 
-                {% if post.filename %}
+                      {% if post.filename %}
 
-                    <td><img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" style="width: auto; height: 80px;" alt="" /></td>
+                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('thumb') }}" style="height: 200px; width: 100%; display: block;" alt="" />
 
-                {% else %}
+                      {% else %}
 
-                    <td><img src="https://via.placeholder.com/140x80" alt="" /></td>
+                        <img src="https://via.placeholder.com/350x200" alt="" />
 
-                {% endif %}
+                      {% endif %}
 
-                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('post.show', {'id': post.id, 'slug': post.slug}) }}">show</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    {{ knp_pagination_render(posts) }}
-{% endblock %}
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"></li>
+                      </ul>
+                      <div class="card-body">
+                        <a href="{{ path('post.show', {'id': post.id, 'slug': post.slug}) }}" class="card-link">Read more</a>
+                      </div>
+                      <div class="card-footer text-muted">
+                        {{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}
+                      </div>
+                    </div>
+                  </div>
+
+            {% else %} <!--Cas où il n'y a pas d'article à afficher-->
+
+            {% endfor %}
+        </div>
+
+        <div class="mt-4" style="margin-bottom: 60px;">
+          {{ knp_pagination_render(posts) }}
+        </div>
+
+        <hr class="mt-4">
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+      <p>© Company 2019</p>
+    </footer>
+
+  {% endblock %}
